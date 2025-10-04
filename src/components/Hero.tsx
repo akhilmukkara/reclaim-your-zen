@@ -1,8 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useState } from "react";
 import heroImage from "@/assets/hero-image.jpg";
+import { LearnMoreModal } from "./LearnMoreModal";
 
 export const Hero = () => {
+  const [isLearnMoreOpen, setIsLearnMoreOpen] = useState(false);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Background gradient */}
@@ -42,7 +46,11 @@ export const Hero = () => {
                 Get Early Access
                 <ArrowRight className="group-hover:translate-x-1 transition-smooth" />
               </Button>
-              <Button variant="outline" size="xl">
+              <Button 
+                variant="outline" 
+                size="xl"
+                onClick={() => setIsLearnMoreOpen(true)}
+              >
                 Learn More
               </Button>
             </div>
@@ -84,6 +92,12 @@ export const Hero = () => {
       {/* Decorative elements */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
+      
+      {/* Learn More Modal */}
+      <LearnMoreModal 
+        isOpen={isLearnMoreOpen} 
+        onClose={() => setIsLearnMoreOpen(false)} 
+      />
     </section>
   );
 };
