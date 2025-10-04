@@ -45,17 +45,6 @@ export const ComingSoon = () => {
                 We respect your privacy. Unsubscribe anytime.
               </p>
             </div>
-            
-            <div className="flex flex-wrap justify-center gap-6 pt-4 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-primary" />
-                <span>Android Launch: Q2 2025</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-secondary" />
-                <span>iOS Coming Later</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>

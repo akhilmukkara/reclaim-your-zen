@@ -4,7 +4,7 @@ import heroImage from "@/assets/hero-image.jpg";
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Background gradient */}
       <div className="absolute inset-0 gradient-hero opacity-5" />
       
