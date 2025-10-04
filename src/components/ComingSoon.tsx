@@ -4,7 +4,7 @@ import { Smartphone } from "lucide-react";
 
 export const ComingSoon = () => {
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section id="waitlist" className="py-24 relative overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 gradient-hero opacity-5" />
       

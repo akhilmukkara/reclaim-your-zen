@@ -28,12 +28,17 @@ export const Hero = () => {
             </h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground max-w-xl mx-auto lg:mx-0">
-              Break free from distractions. Build lasting habits. Master your time with 
+              Break free from distractions. Build lasting habits. Enter Monk Mode in one click. Master your time with 
               <span className="font-semibold text-foreground"> Locked In</span>.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button variant="hero" size="xl" className="group">
+              <Button 
+                variant="hero" 
+                size="xl" 
+                className="group"
+                onClick={() => document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' })}
+              >
                 Get Early Access
                 <ArrowRight className="group-hover:translate-x-1 transition-smooth" />
               </Button>
