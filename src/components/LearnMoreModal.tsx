@@ -1,7 +1,7 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { X, Target, Shield, Clock, Zap, Brain, Lock } from "lucide-react";
+import { Target, Shield, Clock, Zap, Brain, Lock } from "lucide-react";
 import habitIcon from "@/assets/habit-icon.png";
 import blockerIcon from "@/assets/blocker-icon.png";
 import timerIcon from "@/assets/timer-icon.png";
@@ -40,22 +40,12 @@ export const LearnMoreModal = ({ isOpen, onClose }: LearnMoreModalProps) => {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-background border-2 border-primary/10">
         <DialogHeader className="space-y-4">
-          <div className="flex items-center justify-between">
-            <DialogTitle className="text-3xl font-black flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg gradient-hero flex items-center justify-center shadow-md">
-                <Target className="w-6 h-6 text-white" />
-              </div>
-              Why Choose Locked In?
-            </DialogTitle>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onClose}
-              className="rounded-full hover:bg-muted"
-            >
-              <X className="w-5 h-5" />
-            </Button>
-          </div>
+          <DialogTitle className="text-3xl font-black flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg gradient-hero flex items-center justify-center shadow-md">
+              <Target className="w-6 h-6 text-white" />
+            </div>
+            Why Choose Locked In?
+          </DialogTitle>
         </DialogHeader>
 
         <div className="space-y-8">
