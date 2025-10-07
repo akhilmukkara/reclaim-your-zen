@@ -1,8 +1,59 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Smartphone } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 export const ComingSoon = () => {
+  const { toast } = useToast();
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email) {
+      toast({
+        title: "Error",
+        description: "Please enter your email address",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke("submit-waitlist", {
+        body: { email },
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Success! 🎉",
+        description: "Check your email for confirmation. You're on the list!",
+      });
+      
+      setEmail("");
+    } catch (error: any) {
+      console.error("Waitlist submission error:", error);
+      
+      const errorMessage = error.message?.includes("already on the waitlist")
+        ? "You're already on the waitlist!"
+        : "Something went wrong. Please try again.";
+      
+      toast({
+        title: "Error",
+        description: errorMessage,
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="waitlist" className="py-24 relative overflow-hidden">
       {/* Background gradient */}
@@ -31,14 +82,24 @@ export const ComingSoon = () => {
             </div>
             
             <div className="max-w-md mx-auto">
-              <form className="flex flex-col sm:flex-row gap-3">
+              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
                 <Input 
                   type="email" 
                   placeholder="Enter your email" 
                   className="flex-1 h-12 bg-background"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={isSubmitting}
+                  required
                 />
-                <Button variant="hero" size="lg" type="submit" className="sm:w-auto">
-                  Join Waitlist
+                <Button 
+                  variant="hero" 
+                  size="lg" 
+                  type="submit" 
+                  className="sm:w-auto"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Joining..." : "Join Waitlist"}
                 </Button>
               </form>
               <p className="text-sm text-muted-foreground mt-4">
